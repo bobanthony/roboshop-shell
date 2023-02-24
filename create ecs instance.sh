@@ -1,6 +1,8 @@
+#!/bin/bash
+
 ##### Change these values ###
-ZONE_ID="Z00739661SEOHEMKPHEUL"
-DOMAIN="learndevopsb71solutions.site"
+ZONE_ID="Z103214126L48SQW30RSR"
+DOMAIN="devopsb71.online"
 SG_NAME="allow-all"
 #############################
 
@@ -17,8 +19,7 @@ create_ec2() {
       --security-group-ids ${SGID} \
       --user-data file:///tmp/user-data \
       | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
-
-  sed -e "s/IPADDRESS/${PRIVATE_IP}/" -e "s/COMPONENT/${COMPONENT}/" -e "s/DOMAIN/${DOMAIN}/" route53.json >/tmp/record.json
+sed -e "s/IPADDRESS/${PRIVATE_IP}/" -e "s/COMPONENT/${COMPONENT}/" -e "s/DOMAIN/${DOMAIN}/" route53.json >/tmp/record.json
   aws route53 change-resource-record-sets --hosted-zone-id ${ZONE_ID} --change-batch file:///tmp/record.json 2>/dev/null
   if [ $? -eq 0 ]; then
     echo "Server Created - SUCCESS - DNS RECORD - ${COMPONENT}.${DOMAIN}"
@@ -44,8 +45,6 @@ fi
 
 
 for component in catalogue cart user shipping payment frontend mongodb mysql rabbitmq redis dispatch; do
-  COMPONENT="${component}"
+  COMPONENT="${component}-dev"
   create_ec2
 done
-
-
