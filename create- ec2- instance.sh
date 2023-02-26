@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##### Change these values ###
-ZONE_ID="Z103214126L48SQW30RSR"
+ZONE_ID="Z00739661SEOHEMKPHEUL"
 DOMAIN="learndevopsb71solutions.site"
 SG_NAME="allow-all"
 #############################
