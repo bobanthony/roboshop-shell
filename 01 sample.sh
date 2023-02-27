@@ -1,2 +1,7 @@
-echo my name is dinesh
+print
+variable
+comments
+functions
+redirectors
+
 
