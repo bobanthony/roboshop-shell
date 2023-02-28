@@ -1,7 +1,7 @@
 
 code_dir=$(pwd)
 log_file=/tmp/roboshop.log
-rm-f ${log_file}
+rm-f ${log_file} 2>/tmp/roboshop.log
 echo -e "\e[36minstalling nginx\e[0m"
 yum install nginx -y &>>${log_file}
 echo -e "\e[36enable nginx\e[0m"
