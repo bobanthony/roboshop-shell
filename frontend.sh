@@ -1,14 +1,7 @@
 
-code_dir=$(pwd)
-log_file=/tmp/roboshop.log
-rm-f ${log_file}
-
-
-print_head() {
-echo -e "\e[36m$1\e[0m"
-}
-
+source common.sh
 print_head "installing nginx"
+# shellcheck disable=SC2154
 yum install nginx -y &>>${log_file}
 print_head "enable nginx"
 systemctl enable nginx  &>>${log_file}
@@ -22,6 +15,7 @@ print_head "extracting downloaded frontend"
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip  &>>${log_file}
 print_head "copying nginx configs"
-cp ${code_dir}/configs/nginx.roboshop.configs /etc/nginx/default.d/roboshop.conf &>>${log_file}
+# shellcheck disable=SC2154
+cp "${code_dir}/configs/nginx.roboshop.configs" /etc/nginx/default.d/roboshop.conf &>>${log_file}
 print_head "restarting nginx"
 systemctl restart nginx  &>>${log_file}
