@@ -1,4 +1,4 @@
- common.sh
+source common.bash
 print_head "installing nginx"
 # shellcheck disable=SC2154
 yum install nginx -y &>>"${log_file}"

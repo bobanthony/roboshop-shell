@@ -1,8 +1,5 @@
 
 source common.sh
-
-
-
 print_head "set up mongodb repos"
 cp configs/mongodb.repo /etc/yum.repos.d/mongodb.repo
 print_head "installing mongodb"
